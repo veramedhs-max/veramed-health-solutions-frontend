@@ -3,20 +3,24 @@ import App from './App.tsx'
 import './index.css'
 import { Toaster } from 'react-hot-toast';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { HelmetProvider } from "react-helmet-async";
+
 
 createRoot(document.getElementById("root")!).render(
     <>
-        <Toaster
-            position="top-center"
-            reverseOrder={false}
-            toastOptions={{
-                duration: 5000,
-                style: {
-                    background: '#ffffff',
-                    color: '#141414',
-                },
-            }}
-        />
-        <App />
+        <HelmetProvider>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+                toastOptions={{
+                    duration: 5000,
+                    style: {
+                        background: '#ffffff',
+                        color: '#141414',
+                    },
+                }}
+            />
+            <App />
+        </HelmetProvider>
     </>
 );

@@ -24,6 +24,10 @@ import TreatmentAndPlaning from "./pages/TreatmentAndPlaning";
 import VisaAndTravel from "./pages/VisaAndTravel";
 import CultureAndLanguage from "./pages/CultureAndLanguage";
 import PostTreatment from "./pages/PostTreatment";
+import CIS from "./pages/CIS";
+import EastAfrica from "./pages/EastAfrica";
+import NetherLand from "./pages/NetherLand";
+import ArabeGolf from "./pages/ArabeGolf";
 
 const queryClient = new QueryClient();
 
@@ -48,15 +52,13 @@ const App = () => (
           <Route path="/patients-gallery" element={<PatientGalleryPage />} />
           <Route path="/leave-review" element={<LeaveReviewPage />} />
           <Route path="/treatment-planning" element={<TreatmentAndPlaning />} />
+          <Route path="/CIS-ivf" element={<CIS />} />
+          <Route path="/east-africa-ivf" element={<EastAfrica/>} />
+          <Route path="/netherlands-ivf" element={<NetherLand/>} />
+          <Route path="/arabs-golf-ivf" element={<ArabeGolf/>} />
           <Route path="/visa-travel" element={<VisaAndTravel />} />
           <Route path="/culture-language-support" element={<CultureAndLanguage />} />
           <Route path="/post-treatment" element={<PostTreatment />} />
-
-
-
-
-
-
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

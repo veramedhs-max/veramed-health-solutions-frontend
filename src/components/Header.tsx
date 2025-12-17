@@ -8,14 +8,19 @@ import {
 } from "@/components/ui/dialog";
 import {
   Phone,
-  Mail,
   Menu,
   X,
-  Calendar,
-  User,
-  MessageCircleMore,
+  ChevronDown // Imported ChevronDown for the dropdown indicator
 } from "lucide-react";
 import ConsultationForm from "./ConsultationModal";
+
+// --- Configuration for the new Dropdown Links ---
+const serviceRoutes = [
+  { name: "CIS Region IVF", path: "/CIS-ivf" },
+  { name: "East Africa Medical", path: "/east-africa-ivf" },
+  { name: "Netherlands IVF", path: "/netherlands-ivf" },
+  { name: "Arab Gulf Medical", path: "/arabs-golf-ivf" },
+];
 
 // Smooth scroll component
 const NavLink = ({
@@ -69,10 +74,10 @@ const Header = () => {
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
       <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
         
-        {/* ⭐ MAX WIDTH CONTAINER for proper alignment */}
-        <div className="max-w-[1280px] mx-auto px-4">
+        {/* ⭐ MAX WIDTH CONTAINER */}
+        <div className="max-w-[1400px] mx-auto px-4">
 
-          {/* ⭐ Reduced header height */}
+          {/* ⭐ HEADER ROW */}
           <div className="flex items-center justify-between h-16">
 
             {/* LOGO */}
@@ -95,7 +100,31 @@ const Header = () => {
 
             {/* DESKTOP NAV */}
             <nav className="hidden lg:flex items-center space-x-5">
-              <NavLink to="/" hash="#services" className="nav-link">Services</NavLink>
+              
+              {/* --- SERVICES DROPDOWN --- */}
+              {/* Group class allows hover on parent to show child */}
+              <div className="relative group h-full flex items-center">
+                <NavLink to="/" hash="#services" className="nav-link flex items-center gap-1 pb-1">
+                  Services <ChevronDown className="w-4 h-4 mt-0.5 opacity-70" />
+                </NavLink>
+                
+                {/* Dropdown Content */}
+                {/* invisible/opacity-0 to visible/opacity-100 creates smooth fade */}
+                <div className="absolute top-full -left-2 pt-2 w-56 hidden group-hover:block hover:block z-50">
+                  <div className="bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden py-1">
+                    {serviceRoutes.map((service, index) => (
+                      <Link
+                        key={index}
+                        to={service.path}
+                        className="block px-4 py-2.5 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                      >
+                        {service.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
               <NavLink to="/" hash="#about" className="nav-link">About</NavLink>
               <NavLink to="/" hash="#collaborate" className="nav-link">Be Partner With Us</NavLink>
               <NavLink to="/" hash="#why-us" className="nav-link">Why Choose Us</NavLink>
@@ -135,8 +164,28 @@ const Header = () => {
               isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
             }`}
           >
-            <div className="px-4 py-6 space-y-6 text-center">
-              <NavLink className="mobile-link" to="/" hash="#services" onClick={() => setIsMenuOpen(false)}>Services</NavLink>
+            <div className="px-4 py-6 space-y-4 text-center max-h-[80vh] overflow-y-auto">
+              
+              {/* Mobile Services Section */}
+              <div className="flex flex-col space-y-3">
+                <NavLink className="mobile-link font-bold text-blue-600" to="/" hash="#services" onClick={() => setIsMenuOpen(false)}>
+                  Services (View All)
+                </NavLink>
+                {/* Indented Sub-links for Mobile */}
+                <div className="flex flex-col space-y-3 pl-0 bg-slate-50 py-3 rounded-lg mx-8">
+                  {serviceRoutes.map((service, index) => (
+                    <Link 
+                      key={index} 
+                      to={service.path} 
+                      className="text-sm text-gray-600 hover:text-blue-600 font-medium"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {service.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
               <NavLink className="mobile-link" to="/" hash="#about" onClick={() => setIsMenuOpen(false)}>About</NavLink>
               <NavLink className="mobile-link" to="/" hash="#collaborate" onClick={() => setIsMenuOpen(false)}>Be Partner With Us</NavLink>
               <NavLink className="mobile-link" to="/" hash="#why-us" onClick={() => setIsMenuOpen(false)}>Why Choose Us</NavLink>
