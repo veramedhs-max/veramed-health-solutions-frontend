@@ -10,7 +10,7 @@ import {
   Phone,
   Menu,
   X,
-  ChevronDown // Imported ChevronDown for the dropdown indicator
+  ChevronDown
 } from "lucide-react";
 import ConsultationForm from "./ConsultationModal";
 
@@ -21,6 +21,24 @@ const serviceRoutes = [
   { name: "Netherlands IVF", path: "/netherlands-ivf" },
   { name: "Arab Gulf Medical", path: "/arabs-golf-ivf" },
 ];
+
+// --- 🎨 STYLES: Define the Hover Animation Class here ---
+// 1. relative: positions the pseudo-element
+// 2. after:w-0 -> hover:after:w-full: animates width from 0 to 100%
+// 3. transition-colors: smooth text color change
+const navLinkClasses = `
+  text-sm font-medium text-gray-700 transition-colors duration-300
+  hover:text-blue-600 relative
+  after:absolute after:bottom-[-4px] after:left-0 
+  after:h-[2px] after:w-0 after:bg-gradient-to-r after:from-blue-500 after:to-cyan-400
+  after:transition-all after:duration-300 
+  hover:after:w-full cursor-pointer
+`;
+
+const mobileLinkClasses = `
+  block py-2 text-lg font-medium text-gray-700 
+  hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200
+`;
 
 // Smooth scroll component
 const NavLink = ({
@@ -74,49 +92,47 @@ const Header = () => {
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
       <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
         
-        {/* ⭐ MAX WIDTH CONTAINER */}
         <div className="max-w-[1400px] mx-auto px-4">
-
-          {/* ⭐ HEADER ROW */}
           <div className="flex items-center justify-between h-16">
 
             {/* LOGO */}
             <Link
               to="/"
-              className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+              className="flex items-center space-x-2 hover:opacity-80 transition-opacity group"
             >
-              <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
+              <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
                 <span className="text-white font-bold text-base">V</span>
               </div>
               <div>
                 <h1 className="text-sm md:text-base font-bold text-foreground leading-tight">
                   Veramed Health Solutions
                 </h1>
-                <p className="text-[10px] md:text-xs text-muted-foreground">
+                <p className="text-[10px] md:text-xs text-muted-foreground group-hover:text-blue-500 transition-colors">
                   Medical Tourism India
                 </p>
               </div>
             </Link>
 
             {/* DESKTOP NAV */}
-            <nav className="hidden lg:flex items-center space-x-5">
+            <nav className="hidden lg:flex items-center space-x-6">
               
               {/* --- SERVICES DROPDOWN --- */}
-              {/* Group class allows hover on parent to show child */}
               <div className="relative group h-full flex items-center">
-                <NavLink to="/" hash="#services" className="nav-link flex items-center gap-1 pb-1">
-                  Services <ChevronDown className="w-4 h-4 mt-0.5 opacity-70" />
+                {/* Applied navLinkClasses here */}
+                <NavLink to="/" hash="#services" className={`${navLinkClasses} flex items-center gap-1 pb-1`}>
+                  Services 
+                  {/* Chevron rotates on hover */}
+                  <ChevronDown className="w-4 h-4 mt-0.5 opacity-70 group-hover:rotate-180 transition-transform duration-300" />
                 </NavLink>
                 
                 {/* Dropdown Content */}
-                {/* invisible/opacity-0 to visible/opacity-100 creates smooth fade */}
-                <div className="absolute top-full -left-2 pt-2 w-56 hidden group-hover:block hover:block z-50">
-                  <div className="bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden py-1">
+                <div className="absolute top-full -left-2 pt-4 w-60 hidden group-hover:block hover:block z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden py-2 ring-1 ring-black/5">
                     {serviceRoutes.map((service, index) => (
                       <Link
                         key={index}
                         to={service.path}
-                        className="block px-4 py-2.5 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                        className="block px-4 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-700 hover:pl-6 transition-all duration-200 border-l-2 border-transparent hover:border-blue-500"
                       >
                         {service.name}
                       </Link>
@@ -125,32 +141,36 @@ const Header = () => {
                 </div>
               </div>
 
-              <NavLink to="/" hash="#about" className="nav-link">About</NavLink>
-              <NavLink to="/" hash="#collaborate" className="nav-link">Be Partner With Us</NavLink>
-              <NavLink to="/" hash="#why-us" className="nav-link">Why Choose Us</NavLink>
-              <NavLink to="/" hash="#contact" className="nav-link">Contact</NavLink>
-              <Link to="/blog" className="nav-link">Blog</Link>
-              <Link to="/leave-review" className="nav-link">Leave a Review</Link>
+              {/* Standard Links with Animated Underline */}
+              <NavLink to="/" hash="#about" className={navLinkClasses}>About</NavLink>
+              <NavLink to="/" hash="#collaborate" className={navLinkClasses}>Partners</NavLink>
+              <NavLink to="/" hash="#why-us" className={navLinkClasses}>Why Us</NavLink>
+              <NavLink to="/" hash="#contact" className={navLinkClasses}>Contact</NavLink>
+              
+              <Link to="/blog" className={navLinkClasses}>Blog</Link>
+              <Link to="/leave-review" className={navLinkClasses}>Reviews</Link>
             </nav>
 
             {/* CTA + PHONE */}
             <div className="flex items-center">
-              <div className="hidden xl:flex items-center space-x-1 mr-4">
-                <Phone className="w-4 h-4 text-primary" />
-                <a href="tel:+91-9953306560" className="text-sm hover:text-primary">
+              <div className="hidden xl:flex items-center space-x-1 mr-4 group">
+                <div className="p-2 bg-blue-50 rounded-full group-hover:bg-blue-100 transition-colors">
+                  <Phone className="w-4 h-4 text-blue-600" />
+                </div>
+                <a href="tel:+91-9953306560" className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
                   +91-9953306560
                 </a>
               </div>
 
               <DialogTrigger asChild>
-                <Button variant="medical" className="hidden md:block">
+                <Button className="hidden md:block bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
                   Get Second Opinion
                 </Button>
               </DialogTrigger>
 
               {/* MOBILE MENU ICON */}
               <button
-                className="ml-3 lg:hidden"
+                className="ml-3 lg:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 {isMenuOpen ? <X /> : <Menu />}
@@ -160,24 +180,24 @@ const Header = () => {
 
           {/* ⭐ MOBILE MENU */}
           <div
-            className={`lg:hidden absolute left-0 w-full bg-white shadow-lg transition-all duration-300 ${
-              isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+            className={`lg:hidden absolute left-0 w-full bg-white/95 backdrop-blur-md shadow-lg border-t border-gray-100 transition-all duration-300 ease-in-out origin-top ${
+              isMenuOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 pointer-events-none"
             }`}
           >
-            <div className="px-4 py-6 space-y-4 text-center max-h-[80vh] overflow-y-auto">
+            <div className="px-4 py-6 space-y-2 text-center max-h-[85vh] overflow-y-auto">
               
               {/* Mobile Services Section */}
-              <div className="flex flex-col space-y-3">
-                <NavLink className="mobile-link font-bold text-blue-600" to="/" hash="#services" onClick={() => setIsMenuOpen(false)}>
-                  Services (View All)
+              <div className="flex flex-col space-y-2">
+                <NavLink className={mobileLinkClasses} to="/" hash="#services" onClick={() => setIsMenuOpen(false)}>
+                  Services
                 </NavLink>
                 {/* Indented Sub-links for Mobile */}
-                <div className="flex flex-col space-y-3 pl-0 bg-slate-50 py-3 rounded-lg mx-8">
+                <div className="flex flex-col space-y-1 bg-slate-50 py-2 rounded-xl mx-4 border border-slate-100">
                   {serviceRoutes.map((service, index) => (
                     <Link 
                       key={index} 
                       to={service.path} 
-                      className="text-sm text-gray-600 hover:text-blue-600 font-medium"
+                      className="text-sm text-gray-600 py-2 hover:text-blue-600 hover:bg-blue-50/50 font-medium transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {service.name}
@@ -186,21 +206,21 @@ const Header = () => {
                 </div>
               </div>
 
-              <NavLink className="mobile-link" to="/" hash="#about" onClick={() => setIsMenuOpen(false)}>About</NavLink>
-              <NavLink className="mobile-link" to="/" hash="#collaborate" onClick={() => setIsMenuOpen(false)}>Be Partner With Us</NavLink>
-              <NavLink className="mobile-link" to="/" hash="#why-us" onClick={() => setIsMenuOpen(false)}>Why Choose Us</NavLink>
-              <NavLink className="mobile-link" to="/" hash="#contact" onClick={() => setIsMenuOpen(false)}>Contact</NavLink>
-              <Link className="mobile-link" to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
-              <Link className="mobile-link" to="/leave-review" onClick={() => setIsMenuOpen(false)}>Leave a Review</Link>
+              <NavLink className={mobileLinkClasses} to="/" hash="#about" onClick={() => setIsMenuOpen(false)}>About</NavLink>
+              <NavLink className={mobileLinkClasses} to="/" hash="#collaborate" onClick={() => setIsMenuOpen(false)}>Partners</NavLink>
+              <NavLink className={mobileLinkClasses} to="/" hash="#why-us" onClick={() => setIsMenuOpen(false)}>Why Us</NavLink>
+              <NavLink className={mobileLinkClasses} to="/" hash="#contact" onClick={() => setIsMenuOpen(false)}>Contact</NavLink>
+              <Link className={mobileLinkClasses} to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
+              <Link className={mobileLinkClasses} to="/leave-review" onClick={() => setIsMenuOpen(false)}>Reviews</Link>
 
-              <div className="border-t pt-4 space-y-3">
-                <div className="flex justify-center items-center space-x-2 text-sm">
-                  <Phone className="w-4" />
+              <div className="border-t pt-5 mt-4 space-y-4">
+                <div className="flex justify-center items-center space-x-2 text-sm font-medium text-gray-800">
+                  <Phone className="w-4 h-4 text-blue-600" />
                   <a href="tel:+919953306560">+91-9953306560</a>
                 </div>
 
                 <DialogTrigger asChild>
-                  <Button variant="medical" className="w-full" onClick={() => setIsMenuOpen(false)}>
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white" onClick={() => setIsMenuOpen(false)}>
                     Get Second Opinion
                   </Button>
                 </DialogTrigger>
