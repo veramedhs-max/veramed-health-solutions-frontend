@@ -141,15 +141,15 @@ export const FormModal: React.FC<FormModalProps> = ({
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>{triggerElement}</DialogTrigger>
 
-        {/* ⭐ FIXED — NO SCROLL, AUTO HEIGHT ⭐ */}
         <DialogContent
           className="
             sm:max-w-lg
             w-[96%]
             p-0
             rounded-xl
-            bg-card 
-            overflow-visible        /* NO SCROLL */
+            bg-card
+            max-h-[85vh]      /* 1. Limit height to 85% of viewport */
+            overflow-y-auto   /* 2. Enable vertical scrolling */
           "
         >
           <div className="p-4 sm:p-6">
@@ -197,6 +197,8 @@ export const FormModal: React.FC<FormModalProps> = ({
                     !border-gray-300 
                     !rounded-lg
                   "
+                  // Ensure dropdown doesn't get cut off if it's near the bottom
+                  dropdownStyle={{ height: '150px', overflowY: 'auto' }}
                 />
               </div>
 

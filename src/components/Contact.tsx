@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { toast, Toaster } from 'react-hot-toast';
+import { apiClient } from '@/lib/apiClient'; // Ensure this path is correct
 
 import {
   Phone,
@@ -14,13 +16,15 @@ import {
   Send,
   MessageCircle,
   Calendar,
-  Globe
+  Globe,
+  Loader2 // Imported Loader icon
 } from "lucide-react";
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const [formData, setFormData] = useState({
     fullName: "",
-    phone: "",
     email: "",
     preferredCountry: "",
     medicalCondition: "",
@@ -39,26 +43,68 @@ const Contact = () => {
   // Handle phone input changes
   const handlePhoneChange = (value: string, data: any) => {
     const dial = `+${data.dialCode}`;
-    const numberOnly = value.replace(data.dialCode, "");
+    // react-phone-input-2 value usually includes the dialcode, so we strip it to get the raw number
+    // Caution: slice is safer than replace for dial codes to avoid replacing numbers in the body
+    const numberOnly = value.slice(data.dialCode.length); 
 
     setCountryCode(dial);
     setPhoneNumber(numberOnly);
-    setFormData(prev => ({ ...prev, phone: numberOnly }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const finalData = {
-      ...formData,
-      phone: `${countryCode}${phoneNumber}`
+    // Basic validation
+    if (!phoneNumber) {
+      toast.error("Please enter a valid phone number.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    toast.loading("Sending consultation request...");
+
+    // Construct the payload exactly as required by the backend
+    const payload = {
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: `${countryCode}${phoneNumber}`, // Combine code and number
+      preferredCountry: formData.preferredCountry,
+      medicalCondition: formData.medicalCondition,
+      additionalInfo: formData.additionalInfo,
     };
 
-    console.log("Submitted Data:", finalData);
+    try {
+      // 👇 REPLACE WITH YOUR ACTUAL ENDPOINT URL
+      await apiClient.post('/api/v1/veramed/consultation', payload); 
+
+      toast.dismiss(); // Remove loading toast
+      toast.success("Request sent! We will contact you soon.");
+
+      // Reset form
+      setFormData({
+        fullName: "",
+        email: "",
+        preferredCountry: "",
+        medicalCondition: "",
+        additionalInfo: "",
+      });
+      setPhoneNumber("");
+      setCountryCode("+91");
+
+    } catch (error: any) {
+      console.error("Submission Error:", error);
+      toast.dismiss();
+      toast.error(error?.response?.data?.message || "Failed to submit request.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section id="contact" className="py-20 bg-background">
+      {/* Toast Notification Container */}
+      <Toaster position="top-center" />
+
       <div className="container mx-auto px-4">
 
         {/* Heading */}
@@ -83,7 +129,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold">Phone</h4>
-                  <p className="text-muted-foreground">+91-9953306560</p>
+                  <a href="tel:+919953306560" className="text-muted-foreground">+91-9953306560</a>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground">Speak directly with our medical tourism experts</p>
@@ -96,7 +142,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold">Email</h4>
-                  <p className="text-muted-foreground">veramedhs@gmail.com</p>
+                  <a href="mailto:veramedhs@gmail.com" className="text-muted-foreground">veramedhs@gmail.com</a>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground">Send us your medical requirements</p>
@@ -146,6 +192,7 @@ const Contact = () => {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -156,7 +203,7 @@ const Contact = () => {
                       country="in"
                       value={countryCode + phoneNumber}
                       onChange={handlePhoneChange}
-                      inputProps={{ required: true }}
+                      inputProps={{ required: true, disabled: isSubmitting }}
                       containerClass="w-full"
                       inputClass="!w-full !py-3 !text-sm !border !border-gray-300 !rounded-lg"
                     />
@@ -174,6 +221,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -184,6 +232,7 @@ const Contact = () => {
                       placeholder="India, Singapore, Thailand..."
                       value={formData.preferredCountry}
                       onChange={handleInputChange}
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
@@ -199,6 +248,7 @@ const Contact = () => {
                     value={formData.medicalCondition}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -213,17 +263,37 @@ const Contact = () => {
                     rows={4}
                     value={formData.additionalInfo}
                     onChange={handleInputChange}
+                    disabled={isSubmitting}
                   />
                 </div>
 
                 {/* Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button type="submit" variant="medical" className="flex-1 group">
-                    <Send className="w-4 h-4 mr-2 group-hover:translate-x-1" />
-                    Send Consultation Request
+                  <Button 
+                    type="submit" 
+                    variant="medical" 
+                    className="flex-1 group"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2 group-hover:translate-x-1" />
+                        Send Consultation Request
+                      </>
+                    )}
                   </Button>
 
-                  <Button type="button" variant="outline" className="flex-1">
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    className="flex-1"
+                    disabled={isSubmitting}
+                  >
                     <Calendar className="w-4 h-4 mr-2" />
                     Schedule Call Back
                   </Button>
