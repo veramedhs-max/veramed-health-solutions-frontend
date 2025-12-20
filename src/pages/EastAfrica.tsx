@@ -1,263 +1,403 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SEO from '@/components/SEO'; // Ensure this path matches your project structure
-
-// --- Icons ---
-const PlaneIcon = () => (
-  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-);
-const PassportIcon = () => (
-  <svg className="w-10 h-10 text-blue-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-);
-const HospitalIcon = () => (
-  <svg className="w-10 h-10 text-blue-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-);
-const CheckCircle = () => (
-  <svg className="w-5 h-5 text-cyan-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-);
+import SEO from '@/components/SEO';
+import Footer from '@/components/Footer';
+import { Button } from "@/components/ui/button";
+import { 
+  Plane, 
+  Wallet, 
+  HeartHandshake, 
+  Baby, 
+  Gavel, 
+  FileText, 
+  MapPin, 
+  Stethoscope,
+  Globe2,
+  CheckCircle2,
+  AlertTriangle,
+  Clock,
+  Building2
+} from 'lucide-react';
 
 const EastAfrica = () => {
   return (
-    <div className="font-sans text-gray-700">
-      
-      {/* --- SEO Configuration --- */}
-      <SEO 
-        title="Medical Tourism from East Africa to India | Kenya, Ethiopia, Tanzania"
-        description="Comprehensive guide for patients from Kenya, Ethiopia, Tanzania & Uganda traveling to India for medical treatment. Information on Visas, Flights, Costs, and Top Hospitals."
-        keywords="Medical Tourism Kenya to India, Treatment in India for Ethiopians, Tanzania Patient India, Oncology India, Kidney Transplant Cost India, Ethiopian Airlines Medical Travel"
-        canonical="https://veramedhealthsolutions.com/east-africa"
-        ogType="article"
+    <div className="font-sans text-gray-700 bg-slate-50">
+
+      {/* --- SEO INTEGRATION --- */}
+      <SEO
+        title="IVF in India for East African Patients | Kenya, Tanzania, Ethiopia"
+        description="Comprehensive guide to IVF in India for patients from Kenya, Tanzania, Uganda, Rwanda & Ethiopia. Save on fertility treatments with Veramed Health Solutions."
+        keywords="IVF for East Africa India, IVF Cost India vs Kenya, Fertility Treatment for Ethiopians India, IVF Age Limit India, Veramed Health Solutions"
+        canonical="https://veramedhealthsolutions.com/east-africa-ivf"
       />
 
       {/* --- HERO SECTION --- */}
-      <section className="relative bg-slate-50 py-20 lg:py-28 overflow-hidden">
+      <section className="relative bg-white py-20 lg:py-28 overflow-hidden border-b border-gray-100">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center bg-blue-50 border border-blue-100 rounded-full px-4 py-1 mb-6">
-              <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
-              <span className="text-sm text-blue-800 font-medium">Serving Patients from Nairobi, Addis Ababa, Dar es Salaam & Kampala</span>
+          
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Column: Text Content */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6">
+                <Globe2 className="w-4 h-4" />
+                Serving Kenya, Tanzania, Uganda, Rwanda & Ethiopia
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 leading-tight">
+                IVF in India for <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">East Africa</span>
+              </h1>
+              
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                A complete guide for intended parents. Over the past decade, India has become a trusted fertility solution for East African couples, offering advanced technology, internationally trained specialists, and affordable costs.
+              </p>
+              
+              <div className="flex justify-center lg:justify-start">
+                <Link to="/contact">
+                  <Button size="lg" className="rounded-full px-10 py-7 text-lg bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                    Get Free Consultation
+                  </Button>
+                </Link>
+              </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight">
-              World-Class Healthcare <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">
-                Bridging Africa & India
-              </span>
-            </h1>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              We specialize in assisting patients from East Africa with affordable, high-quality medical treatments in India. From medical visas to flight arrangements with <strong>Ethiopian Airlines & Kenya Airways</strong>, we handle every detail.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/contact" className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-300 flex items-center justify-center">
-                <PlaneIcon />
-                <span className="ml-2">Plan My Trip</span>
-              </Link>
-              <button className="px-8 py-4 bg-white text-blue-600 border border-blue-100 font-bold rounded-full shadow hover:bg-gray-50 transition duration-300">
-                Get Cost Estimate
-              </button>
+
+            {/* Right Column: Image */}
+            <div className="relative mx-auto lg:mr-0 max-w-lg lg:max-w-full">
+              {/* Decorative blob behind image */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-[2rem] transform rotate-6 opacity-20 blur-xl"></div>
+              
+              <img 
+                src="https://images.unsplash.com/photo-1516574187841-693083f69802?auto=format&fit=crop&q=80&w=800" 
+                alt="Happy African family consultation" 
+                className="relative rounded-[2rem] shadow-2xl border-4 border-white w-full h-auto object-cover transform transition-transform hover:scale-[1.01]"
+              />
             </div>
+
           </div>
         </div>
         
-        {/* Abstract Background Map Effect */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-5 pointer-events-none">
-           <svg className="absolute right-0 top-0 transform translate-x-1/4 -translate-y-1/4 w-[800px] h-[800px] text-blue-900" fill="currentColor" viewBox="0 0 200 200"><path d="M45.6,169.9c-1.4-4.5-5.9-10.7-3.6-15.5c1.7-3.6,8.8-5,10.6-9.1c2.1-4.7-1.5-12.7-1.1-18c0.3-4.2,4.4-7.9,5.5-12.1c1.8-6.9-3.9-12.8-5-19.3c-1.2-7.1,3.4-13.8,7.9-19.1c7.3-8.6,16.7-16.1,28.2-16.1c9.8,0,18.8,5.4,24.3,13.6c4.6,6.9,4.4,16.2,3.1,24.3c-1.5,9.6-6.6,18.4-7.5,28.2c-0.8,9.4,4.2,18.5,8.8,26.7c4.2,7.4,8.5,15.1,9.4,23.6c0.8,7.3-3.2,14.6-9.1,18.8c-6.1,4.3-13.8,4.7-21,2.8C86,196.4,78.2,192.8,71,189.6C62.4,185.7,51.8,189.4,45.6,169.9z"/></svg>
-        </div>
+        {/* Abstract Background Elements */}
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-cyan-50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
       </section>
 
-      {/* --- WHY PATIENTS TRUST INDIA --- */}
-      <section className="py-16 bg-white">
+      {/* --- WHY EAST AFRICA CHOOSES INDIA --- */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row gap-12 items-center">
-            <div className="md:w-1/2">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Thousands of East Africans Choose India</h2>
-              <div className="space-y-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Why East African Patients Choose India</h2>
+              <p className="text-gray-600 mb-6 text-lg">
+                India offers a unique combination of world-class medical infrastructure and cost-effective treatment. East African patients prefer India for its ethical medical practices, high success rates, and cultural hospitality.
+              </p>
+              <ul className="space-y-4">
                 {[
-                  "Affordability: Treatments cost 70-80% less than in the UK or USA.",
-                  "Connectivity: Direct flights from Nairobi and Addis Ababa to Mumbai/Delhi.",
-                  "Specialized Care: Advanced Oncology, Heart Transplants, and IVF centers.",
-                  "Cultural Comfort: English-speaking doctors, Halal food availability, and prayer rooms.",
-                  "No Waiting Time: Immediate scheduling for urgent surgeries."
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start">
-                    <CheckCircle />
-                    <p className="text-gray-700">{item}</p>
-                  </div>
+                  "Ethical medical practices under strict ART laws.",
+                  "Internationally trained IVF specialists & Embryologists.",
+                  "High success rates comparable to Western countries.",
+                  "Cost-effective solutions (70-80% savings).",
+                  "Direct flights from Nairobi & Addis Ababa."
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700">{item}</span>
+                  </li>
                 ))}
+              </ul>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
+                <Wallet className="w-10 h-10 text-blue-500 mb-3" />
+                <h3 className="font-bold text-gray-900">Affordable</h3>
+                <p className="text-sm text-gray-500">Save up to 70% vs West</p>
+              </div>
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
+                <Building2 className="w-10 h-10 text-cyan-500 mb-3" />
+                <h3 className="font-bold text-gray-900">Advanced Labs</h3>
+                <p className="text-sm text-gray-500">Cutting-edge Technology</p>
+              </div>
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
+                <Gavel className="w-10 h-10 text-indigo-500 mb-3" />
+                <h3 className="font-bold text-gray-900">Legal Safety</h3>
+                <p className="text-sm text-gray-500">Regulated by ART Act</p>
+              </div>
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
+                <HeartHandshake className="w-10 h-10 text-pink-500 mb-3" />
+                <h3 className="font-bold text-gray-900">Full Support</h3>
+                <p className="text-sm text-gray-500">Visa & Logistics</p>
               </div>
             </div>
-            <div className="md:w-1/2 grid grid-cols-2 gap-4">
-                <div className="bg-blue-50 p-6 rounded-2xl text-center">
-                    <h3 className="text-4xl font-bold text-blue-600 mb-2">15k+</h3>
-                    <p className="text-sm text-gray-600">Patients from Africa Annually</p>
+          </div>
+        </div>
+      </section>
+
+      {/* --- ELIGIBILITY & RULES (CRITICAL INFO) --- */}
+      <section className="py-16 bg-white border-y border-gray-100">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">Eligibility & New ART Rules</h2>
+            <p className="text-gray-500 mt-2">Essential requirements for Foreigners under the Indian ART Act</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Column 1: Who is Eligible */}
+            <div className="bg-blue-50/50 p-8 rounded-2xl border border-blue-100">
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                <Baby className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Who Can Apply?</h3>
+              <ul className="space-y-3 text-sm text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
+                  Married heterosexual couples.
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
+                  Diagnosed infertility condition.
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
+                  Valid Medical Visa & Passport.
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
+                  Written consent from both partners.
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 2: Age Limits */}
+            <div className="bg-cyan-50/50 p-8 rounded-2xl border border-cyan-100">
+               <div className="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center mb-6">
+                <Clock className="w-6 h-6 text-cyan-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Age Limits (Strict)</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center bg-white p-3 rounded-lg shadow-sm">
+                  <span className="font-medium text-gray-700">Female Partner</span>
+                  <span className="font-bold text-cyan-700">21 - 50 Years</span>
                 </div>
-                <div className="bg-cyan-50 p-6 rounded-2xl text-center">
-                    <h3 className="text-4xl font-bold text-cyan-600 mb-2">98%</h3>
-                    <p className="text-sm text-gray-600">Visa Success Rate</p>
+                <div className="flex justify-between items-center bg-white p-3 rounded-lg shadow-sm">
+                  <span className="font-medium text-gray-700">Male Partner</span>
+                  <span className="font-bold text-cyan-700">21 - 55 Years</span>
                 </div>
-                <div className="bg-slate-50 p-6 rounded-2xl text-center col-span-2">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">Top Partner Hospitals</h3>
-                    <p className="text-sm text-gray-500">Apollo • Fortis • Medanta • Manipal • HCG</p>
-                </div>
+              </div>
+              <p className="text-xs text-gray-500 mt-4 italic">
+                *Age limits are strictly enforced by the Assisted Reproductive Technology (ART) Act.
+              </p>
+            </div>
+
+            {/* Column 3: Restrictions */}
+            <div className="bg-rose-50/50 p-8 rounded-2xl border border-rose-100">
+               <div className="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mb-6">
+                <AlertTriangle className="w-6 h-6 text-rose-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Important Restrictions</h3>
+              <ul className="space-y-3 text-sm text-gray-700">
+                <li className="flex items-start gap-2">
+                  <AlertTriangle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                  <strong>Surrogacy:</strong> Not permitted for foreign nationals in India.
+                </li>
+                <li className="flex items-start gap-2">
+                  <AlertTriangle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                  <strong>Gamete Donation:</strong> Strictly regulated; commercial sale prohibited.
+                </li>
+                <li className="flex items-start gap-2">
+                  <AlertTriangle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                  <strong>Sex Selection:</strong> Strictly illegal and punishable by law.
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- SPECIALIZED TREATMENTS --- */}
+      {/* --- STEP BY STEP PROCESS --- */}
       <section className="py-16 bg-slate-50">
-        <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Most Sought-After Treatments</h2>
-            <div className="grid md:grid-cols-4 gap-6">
-                {[
-                    { title: "Oncology (Cancer)", desc: "Comprehensive care including PET Scans, Chemotherapy, and CyberKnife radiation.", icon: "🎗️" },
-                    { title: "Cardiac Surgery", desc: "Complex procedures like CABG, Valve Replacement, and pediatric heart surgeries.", icon: "❤️" },
-                    { title: "Organ Transplant", desc: "Leading global center for Kidney, Liver, and Bone Marrow transplants with high success.", icon: "🏥" },
-                    { title: "Orthopedics", desc: "Knee and Hip replacement surgeries using robotic-assisted technology.", icon: "🦴" },
-                ].map((card, idx) => (
-                    <div key={idx} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border-t-4 border-blue-400">
-                        <div className="text-4xl mb-4">{card.icon}</div>
-                        <h3 className="text-xl font-bold mb-2">{card.title}</h3>
-                        <p className="text-gray-600 text-sm">{card.desc}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
-      </section>
-
-      {/* --- TRAVEL LOGISTICS GUIDE --- */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">Your Journey Step-by-Step</h2>
-            
-            <div className="grid md:grid-cols-2 gap-10">
-                {/* Flight Info */}
-                <div className="bg-blue-50 p-8 rounded-2xl">
-                    <div className="flex items-center mb-6">
-                        <PlaneIcon /> 
-                        <h3 className="text-2xl font-bold ml-3 text-gray-800">Flight Connectivity</h3>
-                    </div>
-                    <p className="mb-4 text-gray-700">We recommend the following airlines for the best connectivity to New Delhi (DEL), Mumbai (BOM), and Bangalore (BLR):</p>
-                    <ul className="space-y-3">
-                        <li className="flex items-center bg-white p-3 rounded-lg shadow-sm">
-                            <span className="font-bold text-blue-800 w-24">Ethiopian</span> 
-                            <span className="text-sm">Daily flights from Addis Ababa to Delhi/Mumbai.</span>
-                        </li>
-                        <li className="flex items-center bg-white p-3 rounded-lg shadow-sm">
-                            <span className="font-bold text-red-700 w-24">Kenya Air</span> 
-                            <span className="text-sm">Direct flights from Nairobi to Mumbai.</span>
-                        </li>
-                        <li className="flex items-center bg-white p-3 rounded-lg shadow-sm">
-                            <span className="font-bold text-orange-600 w-24">Air India</span> 
-                            <span className="text-sm">Direct connections from Nairobi & major African hubs.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                {/* Visa Info */}
-                <div className="bg-cyan-50 p-8 rounded-2xl">
-                    <div className="flex items-center mb-6">
-                        <PassportIcon />
-                        <h3 className="text-2xl font-bold ml-3 text-gray-800">Medical Visa (e-Visa)</h3>
-                    </div>
-                    <p className="mb-4 text-gray-700">Citizens of Kenya, Tanzania, Uganda, and Ethiopia are eligible for the <strong>Indian e-Medical Visa</strong>.</p>
-                    <div className="space-y-2">
-                        <h4 className="font-bold text-gray-900">Required Documents:</h4>
-                        <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-                            <li>Scanned copy of Passport Bio Page (valid for 6 months).</li>
-                            <li>Recent passport-size photograph (white background).</li>
-                            <li><strong>Visa Invitation Letter</strong> (We provide this from the hospital).</li>
-                            <li>Yellow Fever Vaccination Certificate (Mandatory for return).</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </section>
-
-      {/* --- COST COMPARISON TABLE --- */}
-      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-6">Cost Savings Comparison</h2>
-          <p className="text-center text-gray-600 mb-10">Estimated costs in USD for major procedures.</p>
-          
-          <div className="overflow-hidden rounded-xl shadow-lg border border-gray-100">
-            <table className="w-full text-left border-collapse">
-              <thead className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white">
-                <tr>
-                  <th className="p-4 font-semibold">Procedure</th>
-                  <th className="p-4 font-semibold hidden sm:table-cell">USA / UK Cost</th>
-                  <th className="p-4 font-semibold hidden sm:table-cell">Turkey / Thailand</th>
-                  <th className="p-4 font-semibold bg-blue-600">India Cost</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {[
-                  { proc: "Heart Bypass (CABG)", west: "$100,000+", mid: "$12,000 - $15,000", india: "$4,500 - $6,000" },
-                  { proc: "Knee Replacement", west: "$40,000+", mid: "$10,000 - $12,000", india: "$3,500 - $5,000" },
-                  { proc: "Kidney Transplant", west: "$300,000+", mid: "$30,000 - $40,000", india: "$10,000 - $12,000" },
-                  { proc: "Cancer Radiation (CyberKnife)", west: "$50,000+", mid: "$15,000", india: "$6,000 - $8,000" },
-                  { proc: "IVF Cycle", west: "$15,000+", mid: "$6,000", india: "$3,000 - $4,500" },
-                ].map((row, idx) => (
-                  <tr key={idx} className="hover:bg-slate-50">
-                    <td className="p-4 font-medium text-gray-900">{row.proc}</td>
-                    <td className="p-4 text-gray-500 hidden sm:table-cell">{row.west}</td>
-                    <td className="p-4 text-gray-500 hidden sm:table-cell">{row.mid}</td>
-                    <td className="p-4 font-bold text-blue-600 bg-blue-50">{row.india}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">Treatment Process</h2>
+            <p className="text-gray-600 mt-2">A step-by-step journey for East African patients</p>
           </div>
-          <p className="text-center text-xs text-gray-400 mt-4">* Prices are approximate and depend on the specific hospital, doctor, and patient condition.</p>
+
+          <div className="relative">
+            {/* Vertical Line */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-200 hidden md:block"></div>
+
+            <div className="space-y-8">
+              {[
+                { title: "Consultation", desc: "Initial consultation and medical evaluation via video call.", icon: <FileText className="w-5 h-5" /> },
+                { title: "Planning & Visa", desc: "Fertility testing, treatment planning, and Medical Visa assistance.", icon: <Plane className="w-5 h-5" /> },
+                { title: "Stimulation", desc: "Ovarian stimulation and monitoring at the clinic.", icon: <Stethoscope className="w-5 h-5" /> },
+                { title: "Egg Retrieval", desc: "Collection of eggs and sperm collection.", icon: <Baby className="w-5 h-5" /> },
+                { title: "Fertilization", desc: "Embryo culture in advanced embryology labs.", icon: <HeartHandshake className="w-5 h-5" /> },
+                { title: "Embryo Transfer", desc: "Transferring the best quality embryo into the uterus.", icon: <Baby className="w-5 h-5" /> },
+                { title: "Follow-up", desc: "Pregnancy testing and follow-up care after returning home.", icon: <CheckCircle2 className="w-5 h-5" /> },
+              ].map((step, idx) => (
+                <div key={idx} className={`relative flex items-center md:justify-between ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                  
+                  {/* Spacer for desktop layout */}
+                  <div className="hidden md:block w-5/12"></div>
+                  
+                  {/* Center Node */}
+                  <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white z-10">
+                    <span className="text-xs font-bold">{idx + 1}</span>
+                  </div>
+
+                  {/* Content Card */}
+                  <div className="ml-12 md:ml-0 w-full md:w-5/12 bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="text-blue-500 bg-blue-50 p-2 rounded-lg">{step.icon}</div>
+                      <h3 className="font-bold text-gray-900">{step.title}</h3>
+                    </div>
+                    <p className="text-sm text-gray-600">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* --- FAQ --- */}
-      <section className="py-16 bg-slate-50">
+      {/* --- TOP LOCATIONS --- */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Top IVF Destinations in India</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">
+              India has a wide network of modern IVF clinics. We help you choose the right city based on expertise and travel convenience.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+            {[
+              "Delhi NCR (Gurugram)", "Mumbai", "Bangalore", "Chennai", 
+              "Hyderabad", "Kolkata", "Pune", "Ahmedabad",
+              "Allahabad", "Varanasi", "Punjab", "Sikkim",
+              "Nagpur", "Patna", "Guwahati", "Darjeeling"
+            ].map((city, index) => (
+              <div key={index} className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition-colors group cursor-default">
+                <MapPin className="w-5 h-5 text-gray-400 group-hover:text-blue-500" />
+                <span className="font-medium">{city}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- COST SECTION --- */}
+      <section className="py-16 bg-blue-600 text-white relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+           <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+             <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
+           </svg>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Transparent & Affordable Pricing</h2>
+              <p className="text-blue-100 text-lg mb-8">
+                IVF packages in India are significantly more affordable than East Africa and the West.
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <span className="text-2xl font-bold">$</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">Standard IVF Cycle</h3>
+                    <p className="text-blue-100 text-2xl font-bold">$2,500 – $4,000 USD</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <span className="text-xl font-bold">+</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">ICSI Procedure</h3>
+                    <p className="text-blue-100">Additional cost based on complexity</p>
+                  </div>
+                </div>
+              </div>
+              <p className="mt-8 text-sm text-blue-200">
+                *Costs vary based on clinic location, technology used, and patient-specific needs.
+              </p>
+            </div>
+
+            {/* Veramed Assistance Card */}
+            <div className="bg-white text-gray-800 p-8 rounded-2xl shadow-2xl">
+              <h3 className="text-2xl font-bold mb-4 text-blue-900">How Veramed Helps You</h3>
+              <ul className="space-y-4">
+                {[
+                  "Selection of the right IVF clinic & specialist.",
+                  "Medical Visa support & invitation letter.",
+                  "Travel & accommodation arrangements.",
+                  "Treatment planning & follow-up coordination.",
+                  "Transparent cost estimation."
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8">
+                 <Link to="/contact">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-6">
+                    Start Your Journey
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- FAQ SECTION --- */}
+      <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4 max-w-3xl">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">Frequently Asked Questions</h2>
+          
           <div className="space-y-4">
-            <details className="bg-white p-5 rounded-lg shadow-sm group">
-              <summary className="font-bold text-gray-800 cursor-pointer flex justify-between items-center">
-                Do I need a polio vaccination?
-                <span className="text-blue-500 group-open:rotate-180 transition">+</span>
-              </summary>
-              <p className="mt-3 text-gray-600">Yes, travellers from certain countries including Kenya, Ethiopia, and Somalia are required to carry a valid Oral Polio Vaccination (OPV) certificate taken at least 4 weeks prior to departure.</p>
-            </details>
-            <details className="bg-white p-5 rounded-lg shadow-sm group">
-              <summary className="font-bold text-gray-800 cursor-pointer flex justify-between items-center">
-                Can I find Swahili or Amharic translators?
-                <span className="text-blue-500 group-open:rotate-180 transition">+</span>
-              </summary>
-              <p className="mt-3 text-gray-600">Absolutely. Major hospitals like Apollo and Fortis have dedicated International Patient desks with translators for Swahili, Amharic, and Arabic to assist you throughout your stay.</p>
-            </details>
-            <details className="bg-white p-5 rounded-lg shadow-sm group">
-              <summary className="font-bold text-gray-800 cursor-pointer flex justify-between items-center">
-                How do I get US Dollars for treatment?
-                <span className="text-blue-500 group-open:rotate-180 transition">+</span>
-              </summary>
-              <p className="mt-3 text-gray-600">We assist you with the 'Cost Estimation Letter' which you can present to your local bank in Kenya or Ethiopia to authorize the transfer of funds for medical purposes.</p>
-            </details>
+            {[
+              { 
+                q: "Is IVF in India legal for East African citizens?", 
+                a: "Yes, IVF treatment is legal for East African citizens under Indian ART laws." 
+              },
+              { 
+                q: "Do East African patients need a medical visa?", 
+                a: "Yes, a Medical Visa is required for all medical treatments in India." 
+              },
+              { 
+                q: "Is surrogacy allowed for East African patients?", 
+                a: "No, commercial surrogacy is prohibited for foreigners. Only IVF without surrogacy is permitted." 
+              },
+              { 
+                q: "How long should I stay in India?", 
+                a: "Typically 3–4 weeks depending on the treatment plan. We help optimize your stay." 
+              },
+              { 
+                q: "Can embryos be frozen for future use?", 
+                a: "Yes, embryo cryopreservation is permitted and widely available in Indian clinics." 
+              }
+            ].map((faq, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-start gap-2">
+                  <span className="text-blue-500">Q.</span> {faq.q}
+                </h3>
+                <p className="text-gray-600 pl-6 leading-relaxed">
+                  {faq.a}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* --- FINAL CTA --- */}
-      <section className="py-20 bg-gradient-to-r from-blue-500 to-cyan-400 text-center text-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Start Your Healing Journey Today</h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">Get a free second opinion from India's top specialists and your medical visa invitation letter within 24 hours.</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-white text-blue-600 font-bold py-4 px-10 rounded-full shadow-lg hover:bg-gray-100 transition duration-300">
-              Get Free Consultation
-            </button>
-            <a href="https://wa.me/" className="bg-green-500 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center">
-              <span>Chat on WhatsApp</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
+      <Footer />
     </div>
   );
 };

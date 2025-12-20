@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -135,7 +135,7 @@ const Contact = () => {
               <h3 className="text-2xl font-bold mb-6">Get Your Free Consultation</h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                
+
                 {/* Row 1 */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -263,10 +263,9 @@ const Contact = () => {
             </div>
             <h4 className="font-semibold mb-2">Find Doctors</h4>
             <p className="text-sm text-muted-foreground mb-4">Browse specialists</p>
-            <Button variant="outline" size="sm">Browse</Button>
+            <a href="https://mymedicalassistant.africa/find-doctor" target="_blank" className="w-full border border-primary rounded-md px-4 py-2 text-primary hover:bg-primary hover:text-white" >Browse</a>
           </Card>
         </div>
-
       </div>
     </section>
   );

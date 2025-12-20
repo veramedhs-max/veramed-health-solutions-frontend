@@ -34,6 +34,8 @@ import ArabeGolf from "./pages/ArabeGolf";
 // --- Styles ---
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ScrollToTop from "./components/ScrollToTop";
+import ContactPage from "./pages/ContactPage";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +45,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Header />
         <Routes>
           {/* Main Pages */}
@@ -50,33 +53,36 @@ const App = () => (
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/services" element={<Services />} />
           <Route path="/servicedetails/:serviceId" element={<ServiceDetail />} />
-          
+
           {/* Company & Legal */}
           <Route path="/start-your-journey" element={<StartYourJourney />} />
           <Route path="/meet-out-team" element={<Team />} />
           <Route path="/terms-and-condition" element={<TermsAndConditionPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/medical-desclaimar" element={<MedicalDisclaimerPage />} />
-          
+
           {/* Customer Interaction */}
           <Route path="/patients-gallery" element={<PatientGalleryPage />} />
           <Route path="/leave-review" element={<LeaveReviewPage />} />
-          
+
           {/* Process & Support */}
           <Route path="/treatment-planning" element={<TreatmentAndPlaning />} />
           <Route path="/visa-travel" element={<VisaAndTravel />} />
           <Route path="/culture-language-support" element={<CultureAndLanguage />} />
           <Route path="/post-treatment" element={<PostTreatment />} />
-          
+
           {/* Specific Regional Pages */}
           <Route path="/CIS-ivf" element={<CIS />} />
-          <Route path="/east-africa-ivf" element={<EastAfrica/>} />
-          <Route path="/netherlands-ivf" element={<NetherLand/>} />
-          <Route path="/arabs-golf-ivf" element={<ArabeGolf/>} />
+          <Route path="/east-africa-ivf" element={<EastAfrica />} />
+          <Route path="/netherlands-ivf" element={<NetherLand />} />
+          <Route path="/arabs-golf-ivf" element={<ArabeGolf />} />
+          <Route path="/contact" element={<ContactPage />} />
+
+
 
           {/* ⭐ 404 CATCH-ALL ROUTE (Must be last) */}
           <Route path="*" element={<NotFound />} />
-          
+
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

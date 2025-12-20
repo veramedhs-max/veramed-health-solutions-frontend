@@ -22,10 +22,6 @@ const serviceRoutes = [
   { name: "Arab Gulf Medical", path: "/arabs-golf-ivf" },
 ];
 
-// --- 🎨 STYLES: Define the Hover Animation Class here ---
-// 1. relative: positions the pseudo-element
-// 2. after:w-0 -> hover:after:w-full: animates width from 0 to 100%
-// 3. transition-colors: smooth text color change
 const navLinkClasses = `
   text-sm font-medium text-gray-700 transition-colors duration-300
   hover:text-blue-600 relative
@@ -40,7 +36,7 @@ const mobileLinkClasses = `
   hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200
 `;
 
-// Smooth scroll component
+// --- 🛠️ FIXED NAVLINK COMPONENT ---
 const NavLink = ({
   to,
   hash,
@@ -53,12 +49,14 @@ const NavLink = ({
 
   const handleClick = (e: any) => {
     if (onClick) onClick();
+    // Only prevent default if we are on homepage AND it is a hash link
     if (isHomePage && hash) {
       e.preventDefault();
       document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
+  // 1. If we are on Home and it's a Hash link (Scroll behavior)
   if (isHomePage && hash) {
     return (
       <a href={hash} className={className} onClick={handleClick}>
@@ -67,8 +65,13 @@ const NavLink = ({
     );
   }
 
+  // 2. Determine the destination
+  // If no hash is provided (like /contact), use the 'to' prop directly.
+  // If a hash IS provided (like /#about), construct the root path.
+  const destination = !hash && to ? to : `/${hash || ""}`;
+
   return (
-    <Link to={`/${hash || ""}`} className={className} onClick={onClick}>
+    <Link to={destination} className={className} onClick={onClick}>
       {children}
     </Link>
   );
@@ -118,14 +121,11 @@ const Header = () => {
               
               {/* --- SERVICES DROPDOWN --- */}
               <div className="relative group h-full flex items-center">
-                {/* Applied navLinkClasses here */}
                 <NavLink to="/" hash="#services" className={`${navLinkClasses} flex items-center gap-1 pb-1`}>
                   Services 
-                  {/* Chevron rotates on hover */}
                   <ChevronDown className="w-4 h-4 mt-0.5 opacity-70 group-hover:rotate-180 transition-transform duration-300" />
                 </NavLink>
                 
-                {/* Dropdown Content */}
                 <div className="absolute top-full -left-2 pt-4 w-60 hidden group-hover:block hover:block z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden py-2 ring-1 ring-black/5">
                     {serviceRoutes.map((service, index) => (
@@ -141,14 +141,17 @@ const Header = () => {
                 </div>
               </div>
 
-              {/* Standard Links with Animated Underline */}
+              {/* Standard Links */}
               <NavLink to="/" hash="#about" className={navLinkClasses}>About</NavLink>
               <NavLink to="/" hash="#collaborate" className={navLinkClasses}>Partners</NavLink>
               <NavLink to="/" hash="#why-us" className={navLinkClasses}>Why Us</NavLink>
-              <NavLink to="/" hash="#contact" className={navLinkClasses}>Contact</NavLink>
               
-              <Link to="/blog" className={navLinkClasses}>Blog</Link>
-              <Link to="/leave-review" className={navLinkClasses}>Reviews</Link>
+              {/* ✅ This will now work because NavLink checks the 'to' prop */}
+              <NavLink to="/contact" className={navLinkClasses}>Contact</NavLink>
+              
+              {/* I replaced Link with NavLink here for consistency, but standard Link is fine too */}
+              <NavLink to="/blog" className={navLinkClasses}>Blog</NavLink>
+              <NavLink to="/leave-review" className={navLinkClasses}>Reviews</NavLink>
             </nav>
 
             {/* CTA + PHONE */}
@@ -178,7 +181,7 @@ const Header = () => {
             </div>
           </div>
 
-          {/* ⭐ MOBILE MENU */}
+          {/* MOBILE MENU */}
           <div
             className={`lg:hidden absolute left-0 w-full bg-white/95 backdrop-blur-md shadow-lg border-t border-gray-100 transition-all duration-300 ease-in-out origin-top ${
               isMenuOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 pointer-events-none"
@@ -186,12 +189,10 @@ const Header = () => {
           >
             <div className="px-4 py-6 space-y-2 text-center max-h-[85vh] overflow-y-auto">
               
-              {/* Mobile Services Section */}
               <div className="flex flex-col space-y-2">
                 <NavLink className={mobileLinkClasses} to="/" hash="#services" onClick={() => setIsMenuOpen(false)}>
                   Services
                 </NavLink>
-                {/* Indented Sub-links for Mobile */}
                 <div className="flex flex-col space-y-1 bg-slate-50 py-2 rounded-xl mx-4 border border-slate-100">
                   {serviceRoutes.map((service, index) => (
                     <Link 
@@ -209,9 +210,11 @@ const Header = () => {
               <NavLink className={mobileLinkClasses} to="/" hash="#about" onClick={() => setIsMenuOpen(false)}>About</NavLink>
               <NavLink className={mobileLinkClasses} to="/" hash="#collaborate" onClick={() => setIsMenuOpen(false)}>Partners</NavLink>
               <NavLink className={mobileLinkClasses} to="/" hash="#why-us" onClick={() => setIsMenuOpen(false)}>Why Us</NavLink>
-              <NavLink className={mobileLinkClasses} to="/" hash="#contact" onClick={() => setIsMenuOpen(false)}>Contact</NavLink>
-              <Link className={mobileLinkClasses} to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
-              <Link className={mobileLinkClasses} to="/leave-review" onClick={() => setIsMenuOpen(false)}>Reviews</Link>
+              
+              {/* ✅ Fixed for Mobile as well */}
+              <NavLink className={mobileLinkClasses} to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</NavLink>
+              <NavLink className={mobileLinkClasses} to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</NavLink>
+              <NavLink className={mobileLinkClasses} to="/leave-review" onClick={() => setIsMenuOpen(false)}>Reviews</NavLink>
 
               <div className="border-t pt-5 mt-4 space-y-4">
                 <div className="flex justify-center items-center space-x-2 text-sm font-medium text-gray-800">
@@ -231,7 +234,6 @@ const Header = () => {
         </div>
       </header>
 
-      {/* MODAL CONTENT */}
       <DialogContent className="sm:max-w-[480px] p-0 border-none">
         <ConsultationForm onSuccess={() => setIsModalOpen(false)} />
       </DialogContent>
