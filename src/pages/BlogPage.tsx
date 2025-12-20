@@ -5,13 +5,12 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Home } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
+import SEO from "@/components/SEO"; // ✅ SEO Component
+import Footer from "@/components/Footer";
+
 import img1 from "../assets/img01.png";
 import img2 from "../assets/img02.png";
 import img3 from "../assets/img03.png";
-
-// ❌ WRONG: import { Footer } from "react-day-picker";
-// ✅ Correct Footer import (your own component)
-import Footer from "@/components/Footer";
 
 const BlogPage: React.FC = () => {
   const settings = {
@@ -25,101 +24,117 @@ const BlogPage: React.FC = () => {
   };
 
   return (
-    <section id="blog" className="py-20 bg-gradient-subtle min-h-screen">
-      {/* Navigation buttons */}
-      <div className="container mx-auto px-4 mb-8">
-        <div className="flex space-x-2">
-          <Link 
-            to="/" 
-            className="flex items-center space-x-2 bg-card/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-card-medical hover:bg-card transition-colors duration-200 border border-border"
-          >
-            <ArrowLeft className="w-4 h-4 text-foreground" />
-            <span className="text-foreground">Back</span>
-          </Link>
+    <>
+      {/* =================== SEO =================== */}
+      <SEO
+        title="Medical Tourism Blogs & Healthcare Insights | Veramed Health Solutions"
+        description="Explore expert blogs on medical tourism, robotic surgery, advanced healthcare technology, and patient recovery insights by Veramed Health Solutions."
+        keywords="medical tourism blog, healthcare insights, robotic surgery, healthcare technology, Veramed Health Solutions"
+        canonical="https://veramedhealthsolutions.com/blog"
+        ogType="article"
+        schemaType="Article"
+        publishedAt="2024-01-01"
+        updatedAt={new Date().toISOString()}
+      />
 
-          <Link 
-            to="/" 
-            className="flex items-center space-x-2 bg-gradient-primary text-white px-4 py-2 rounded-lg shadow-medical hover:shadow-lg transition-all duration-200"
-          >
-            <Home className="w-4 h-4" />
-            <span>Home</span>
-          </Link>
-        </div>
-      </div>
+      <section id="blog" className="py-20 bg-gradient-subtle min-h-screen">
+        {/* Navigation buttons */}
+        <div className="container mx-auto px-4 mb-8">
+          <div className="flex space-x-2">
+            <Link
+              to="/"
+              className="flex items-center space-x-2 bg-card/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-card-medical hover:bg-card transition-colors duration-200 border border-border"
+            >
+              <ArrowLeft className="w-4 h-4 text-foreground" />
+              <span className="text-foreground">Back</span>
+            </Link>
 
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            📰 Blog Highlights
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Discover the latest insights and innovations in medical tourism and healthcare technology
-          </p>
-        </div>
-
-        <div className="max-w-4xl mx-auto">
-          <Slider {...settings}>
-
-            {/* Slide 1 */}
-            <div className="p-6">
-              <Card className="p-8 hover:shadow-medical transition-all duration-500 hover:-translate-y-2 bg-card border-border group">
-                <div className="text-center">
-                  <img src={img1} alt="Blog 1"
-                    className="mx-auto w-full max-w-md h-56 object-cover rounded-lg shadow-card-medical mb-6 group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
-                    Robotic Surgery: A New Era in Healing
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                    At Veramed Health Solutions, we specialize in organizing end-to-end medical tours...
-                  </p>
-                </div>
-              </Card>
-            </div>
-
-            {/* Slide 2 */}
-            <div className="p-6">
-              <Card className="p-8 hover:shadow-medical transition-all duration-500 hover:-translate-y-2 bg-card border-border group">
-                <div className="text-center">
-                  <img src={img2} alt="Blog 2"
-                    className="mx-auto w-full max-w-md h-56 object-cover rounded-lg shadow-card-medical mb-6 group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
-                    Precision and Recovery with Robotic Urology
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                    Veramed goes beyond just booking appointments...
-                  </p>
-                </div>
-              </Card>
-            </div>
-
-            {/* Slide 3 */}
-            <div className="p-6">
-              <Card className="p-8 hover:shadow-medical transition-all duration-500 hover:-translate-y-2 bg-card border-border group">
-                <div className="text-center">
-                  <img src={img3} alt="Blog 3"
-                    className="mx-auto w-full max-w-md h-56 object-cover rounded-lg shadow-card-medical mb-6 group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
-                    Revolutionizing Recovery: The Power of Technology
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                    From initial arrival to long-term recovery...
-                  </p>
-                </div>
-              </Card>
-            </div>
-
-          </Slider>
+            <Link
+              to="/"
+              className="flex items-center space-x-2 bg-gradient-primary text-white px-4 py-2 rounded-lg shadow-medical hover:shadow-lg transition-all duration-200"
+            >
+              <Home className="w-4 h-4" />
+              <span>Home</span>
+            </Link>
+          </div>
         </div>
 
-        <div className="text-center mt-12"></div>
-      </div>
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              📰 Blog Highlights
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Discover the latest insights and innovations in medical tourism and healthcare technology
+            </p>
+          </div>
 
-      {/* ✅ Proper Footer Added */}
-      <Footer />
-    </section>
+          <div className="max-w-4xl mx-auto">
+            <Slider {...settings}>
+              {/* Slide 1 */}
+              <div className="p-6">
+                <Card className="p-8 hover:shadow-medical transition-all duration-500 hover:-translate-y-2 bg-card border-border group">
+                  <div className="text-center">
+                    <img
+                      src={img1}
+                      alt="Robotic Surgery in Medical Tourism"
+                      className="mx-auto w-full max-w-md h-56 object-cover rounded-lg shadow-card-medical mb-6 group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
+                      Robotic Surgery: A New Era in Healing
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+                      At Veramed Health Solutions, we specialize in organizing end-to-end medical tours...
+                    </p>
+                  </div>
+                </Card>
+              </div>
+
+              {/* Slide 2 */}
+              <div className="p-6">
+                <Card className="p-8 hover:shadow-medical transition-all duration-500 hover:-translate-y-2 bg-card border-border group">
+                  <div className="text-center">
+                    <img
+                      src={img2}
+                      alt="Robotic Urology Treatment"
+                      className="mx-auto w-full max-w-md h-56 object-cover rounded-lg shadow-card-medical mb-6 group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
+                      Precision and Recovery with Robotic Urology
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+                      Veramed goes beyond just booking appointments...
+                    </p>
+                  </div>
+                </Card>
+              </div>
+
+              {/* Slide 3 */}
+              <div className="p-6">
+                <Card className="p-8 hover:shadow-medical transition-all duration-500 hover:-translate-y-2 bg-card border-border group">
+                  <div className="text-center">
+                    <img
+                      src={img3}
+                      alt="Healthcare Technology Recovery"
+                      className="mx-auto w-full max-w-md h-56 object-cover rounded-lg shadow-card-medical mb-6 group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
+                      Revolutionizing Recovery: The Power of Technology
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+                      From initial arrival to long-term recovery...
+                    </p>
+                  </div>
+                </Card>
+              </div>
+            </Slider>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <Footer />
+      </section>
+    </>
   );
 };
 
