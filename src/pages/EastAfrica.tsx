@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SEO from '@/components/SEO';
 import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
+import ivf from '@/assets/IVF_in_India.png'; 
 import { 
   Plane, 
   Wallet, 
@@ -68,7 +69,7 @@ const EastAfrica = () => {
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-[2rem] transform rotate-6 opacity-20 blur-xl"></div>
               
               <img 
-                src="https://images.unsplash.com/photo-1516574187841-693083f69802?auto=format&fit=crop&q=80&w=800" 
+                src={ivf} 
                 alt="Happy African family consultation" 
                 className="relative rounded-[2rem] shadow-2xl border-4 border-white w-full h-auto object-cover transform transition-transform hover:scale-[1.01]"
               />
