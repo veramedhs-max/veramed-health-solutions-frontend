@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Linkedin, Twitter, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // --- TypeScript Type Definitions ---
 interface SocialLinks {
@@ -22,9 +23,9 @@ interface TeamMember {
 // --- Team Member Data ---
 const teamMembers: TeamMember[] = [
   {
-    name: "Shah Fahad",
+    name: "Mr. Shah Fahad",
     role: "Owner",
-    imageUrl: "https://i.pravatar.cc/150?u=fahad",
+    imageUrl: "",
     bio: "Shah Fahad is the visionary owner behind the organization, driving strategy, growth, and long-term success.",
     socials: {
       linkedin: "#",
@@ -33,9 +34,9 @@ const teamMembers: TeamMember[] = [
     },
   },
   {
-    name: "Sumit Kumar",
+    name: "Mr. Sumit Kumar",
     role: "Team Lead",
-    imageUrl: "https://i.pravatar.cc/150?u=sumit",
+    imageUrl: "",
     bio: "Sumit leads the development team, ensuring high-quality delivery, technical excellence, and smooth collaboration.",
     socials: {
       linkedin: "#",
@@ -44,9 +45,20 @@ const teamMembers: TeamMember[] = [
     },
   },
   {
-    name: "Shruti",
+    name: "Mr. Md Aqib",
+    role: "Full Stack Developer",
+    imageUrl: "",
+    bio: "Aqib works as a Full Stack Developer, building scalable web applications from front end to back end. He ensures clean code, performance optimization, and seamless user experiences.",
+    socials: {
+      linkedin: "#",
+      twitter: "#",
+      email: "mailto:aqibcse4530@gmail.com",
+    },
+  },
+  {
+    name: "Ms. Shruti",
     role: "Senior Developer",
-    imageUrl: "https://i.pravatar.cc/150?u=shruti",
+    imageUrl: "",
     bio: "Shruti brings strong technical expertise and mentors the team while building scalable and reliable solutions.",
     socials: {
       linkedin: "#",
@@ -55,20 +67,20 @@ const teamMembers: TeamMember[] = [
     },
   },
   {
-    name: "Ravi",
-    role: "UI/UX Designer",
-    imageUrl: "https://i.pravatar.cc/150?u=ravi",
-    bio: "Ravi crafts intuitive and accessible user experiences, ensuring our digital platforms are not only functional but beautiful.",
+    name: "Mr. Abhishek Kumar",
+    role: "Frontend Developer",
+    imageUrl: "",
+    bio: "Abhishek is a passionate intern, learning and contributing to real-world projects with dedication.",
     socials: {
       linkedin: "#",
       twitter: "#",
-      email: "mailto:ravi@veramedhs.com",
+      email: "mailto:abhishek.kumar@veramedhs.com",
     },
   },
   {
-    name: "Yashi",
-    role: "Developer",
-    imageUrl: "https://i.pravatar.cc/150?u=yashi",
+    name: "Ms. Yashi Tiwari",
+    role: "Frontend Developer",
+    imageUrl: "",
     bio: "Yashi focuses on developing clean, user-friendly interfaces and robust application features.",
     socials: {
       linkedin: "#",
@@ -77,24 +89,47 @@ const teamMembers: TeamMember[] = [
     },
   },
   {
-    name: "Abhishek Kumar",
-    role: "Intern",
-    imageUrl: "https://i.pravatar.cc/150?u=abhishek",
-    bio: "Abhishek is a passionate intern, learning and contributing to real-world projects with dedication.",
+    name: "Mr. Ravi",
+    role: "UI/UX Designer",
+    imageUrl: "",
+    bio: "Ravi crafts intuitive and accessible user experiences, ensuring our digital platforms are not only functional but beautiful.",
     socials: {
       linkedin: "#",
       twitter: "#",
-      email: "mailto:abhishek.kumar@veramedhs.com",
+      email: "mailto:ravi@veramedhs.com",
     },
   },
+
 ];
+
+// --- Helper Functions ---
+const getInitials = (name: string) => {
+  const parts = name.split(' ').filter(p => !p.toLowerCase().includes('mr.') && !p.toLowerCase().includes('ms.'));
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+  return name.charAt(0).toUpperCase();
+};
+
+const getBackgroundColor = (name: string) => {
+  const colors = [
+    'bg-blue-500', 'bg-green-500', 'bg-purple-500',
+    'bg-pink-500', 'bg-orange-500', 'bg-teal-500',
+    'bg-indigo-500', 'bg-rose-500'
+  ];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return colors[Math.abs(hash) % colors.length];
+};
 
 // --- Team Component ---
 const Team: React.FC = () => {
   return (
     <section id="team" className="py-24 bg-background">
       <div className="container mx-auto px-4 max-w-7xl">
-        
+
         {/* --- Page Header --- */}
         <div className="text-center mb-20 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -119,15 +154,16 @@ const Team: React.FC = () => {
               <div className="h-1 w-full bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="p-8 flex flex-col h-full items-center text-center">
-                
+
                 {/* --- Image with Ring Effect --- */}
                 <div className="mb-6 relative">
                   <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <img
-                    src={member.imageUrl}
-                    alt={`Portrait of ${member.name}`}
-                    className="relative w-36 h-36 rounded-full object-cover border-4 border-background shadow-md group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <Avatar className="w-36 h-36 border-4 border-background shadow-md group-hover:scale-105 transition-transform duration-300">
+                    <AvatarImage src={member.imageUrl} alt={member.name} className="object-cover" />
+                    <AvatarFallback className={`text-3xl font-bold text-white ${getBackgroundColor(member.name)} shadow-inner`}>
+                      {getInitials(member.name)}
+                    </AvatarFallback>
+                  </Avatar>
                 </div>
 
                 {/* --- Content --- */}
@@ -135,7 +171,7 @@ const Team: React.FC = () => {
                   <h3 className="text-2xl font-bold text-foreground mb-2">
                     {member.name}
                   </h3>
-                  
+
                   {/* Role Badge */}
                   <div className="inline-block px-3 py-1 bg-primary/10 rounded-full mb-4">
                     <p className="text-primary font-semibold text-xs tracking-wide uppercase">
@@ -182,9 +218,9 @@ const Team: React.FC = () => {
 
 // Helper component for social icons to keep code clean
 const SocialButton: React.FC<{ href: string; icon: React.ReactNode }> = ({ href, icon }) => (
-  <a 
-    href={href} 
-    target="_blank" 
+  <a
+    href={href}
+    target="_blank"
     rel="noopener noreferrer"
     className="p-2.5 rounded-full bg-muted/50 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
   >
