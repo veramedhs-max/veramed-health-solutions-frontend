@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import logo from "../assets/Veramed Health Care png-07-07 (4).jpg"
 import {
   Dialog,
   DialogContent,
@@ -99,7 +100,13 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
 
             {/* LOGO */}
-            <Link
+<img
+  src={logo}
+  alt="logo"
+  className="h-16 w-18"
+/>
+
+            {/* <Link
               to="/"
               className="flex items-center space-x-2 hover:opacity-80 transition-opacity group"
             >
@@ -114,7 +121,7 @@ const Header = () => {
                   Medical Tourism India
                 </p>
               </div>
-            </Link>
+            </Link> */}
 
             {/* DESKTOP NAV */}
             <nav className="hidden lg:flex items-center space-x-6">
