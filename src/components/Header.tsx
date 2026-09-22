@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import logo from "../assets/Veramed Health Care png-07-07 (4).jpg"
+// import logo from "../assets/Veramed Health Care png-07-07 (4).jpg"
+import logo from "../assets/WhatsApp_Image_2026-09-20_at_14.09.20-removebg-preview.png"
 import {
   Dialog,
   DialogContent,
@@ -95,44 +96,29 @@ const Header = () => {
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
       <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
-        
+
         <div className="max-w-[1400px] mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
 
             {/* LOGO */}
-<img
-  src={logo}
-  alt="logo"
-  className="h-16 w-18"
-/>
 
-            {/* <Link
-              to="/"
-              className="flex items-center space-x-2 hover:opacity-80 transition-opacity group"
-            >
-              <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
-                <span className="text-white font-bold text-base">V</span>
-              </div>
-              <div>
-                <h1 className="text-sm md:text-base font-bold text-foreground leading-tight">
-                  Veramed Health Solutions
-                </h1>
-                <p className="text-[10px] md:text-xs text-muted-foreground group-hover:text-blue-500 transition-colors">
-                  Medical Tourism India
-                </p>
-              </div>
-            </Link> */}
-
+            <Link to="/" className="flex items-center">
+              <img
+                src={logo}
+                alt="Veramed Health Solutions"
+                className="h-14 md:h-16 w-auto object-contain -my-2"
+              />
+            </Link>
             {/* DESKTOP NAV */}
             <nav className="hidden lg:flex items-center space-x-6">
-              
+
               {/* --- SERVICES DROPDOWN --- */}
               <div className="relative group h-full flex items-center">
                 <NavLink to="/" hash="#services" className={`${navLinkClasses} flex items-center gap-1 pb-1`}>
-                  Services 
+                  Services
                   <ChevronDown className="w-4 h-4 mt-0.5 opacity-70 group-hover:rotate-180 transition-transform duration-300" />
                 </NavLink>
-                
+
                 <div className="absolute top-full -left-2 pt-4 w-60 hidden group-hover:block hover:block z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden py-2 ring-1 ring-black/5">
                     {serviceRoutes.map((service, index) => (
@@ -152,10 +138,10 @@ const Header = () => {
               <NavLink to="/" hash="#about" className={navLinkClasses}>About</NavLink>
               <NavLink to="/" hash="#collaborate" className={navLinkClasses}>Partners</NavLink>
               <NavLink to="/" hash="#why-us" className={navLinkClasses}>Why Us</NavLink>
-              
+
               {/* ✅ This will now work because NavLink checks the 'to' prop */}
               <NavLink to="/contact" className={navLinkClasses}>Contact</NavLink>
-              
+
               {/* I replaced Link with NavLink here for consistency, but standard Link is fine too */}
               <NavLink to="/blog" className={navLinkClasses}>Blog</NavLink>
               <NavLink to="/leave-review" className={navLinkClasses}>Reviews</NavLink>
@@ -190,21 +176,20 @@ const Header = () => {
 
           {/* MOBILE MENU */}
           <div
-            className={`lg:hidden absolute left-0 w-full bg-white/95 backdrop-blur-md shadow-lg border-t border-gray-100 transition-all duration-300 ease-in-out origin-top ${
-              isMenuOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 pointer-events-none"
-            }`}
+            className={`lg:hidden absolute left-0 w-full bg-white/95 backdrop-blur-md shadow-lg border-t border-gray-100 transition-all duration-300 ease-in-out origin-top ${isMenuOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 pointer-events-none"
+              }`}
           >
             <div className="px-4 py-6 space-y-2 text-center max-h-[85vh] overflow-y-auto">
-              
+
               <div className="flex flex-col space-y-2">
                 <NavLink className={mobileLinkClasses} to="/" hash="#services" onClick={() => setIsMenuOpen(false)}>
                   Services
                 </NavLink>
                 <div className="flex flex-col space-y-1 bg-slate-50 py-2 rounded-xl mx-4 border border-slate-100">
                   {serviceRoutes.map((service, index) => (
-                    <Link 
-                      key={index} 
-                      to={service.path} 
+                    <Link
+                      key={index}
+                      to={service.path}
                       className="text-sm text-gray-600 py-2 hover:text-blue-600 hover:bg-blue-50/50 font-medium transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -217,7 +202,7 @@ const Header = () => {
               <NavLink className={mobileLinkClasses} to="/" hash="#about" onClick={() => setIsMenuOpen(false)}>About</NavLink>
               <NavLink className={mobileLinkClasses} to="/" hash="#collaborate" onClick={() => setIsMenuOpen(false)}>Partners</NavLink>
               <NavLink className={mobileLinkClasses} to="/" hash="#why-us" onClick={() => setIsMenuOpen(false)}>Why Us</NavLink>
-              
+
               {/* ✅ Fixed for Mobile as well */}
               <NavLink className={mobileLinkClasses} to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</NavLink>
               <NavLink className={mobileLinkClasses} to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</NavLink>
