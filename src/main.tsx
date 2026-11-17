@@ -5,6 +5,11 @@ import { Toaster } from 'react-hot-toast';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { HelmetProvider } from "react-helmet-async";
 
+if ("serviceWorker" in navigator && import.meta.env.PROD) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js").catch(() => { });
+    });
+}
 
 createRoot(document.getElementById("root")!).render(
     <>
