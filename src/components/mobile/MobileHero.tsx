@@ -439,7 +439,7 @@ export default function HeroSectionMob({
           }
           onClick={handleContainerClick}
           onKeyDown={handleContainerKeyDown}
-          className="relative w-full h-full overflow-hidden rounded-2xl border-2 border-[#B91C1C] ring-2 ring-[#2B4C7E]/15 bg-slate-900 shadow-[0_8px_24px_rgba(43,76,126,0.18)] cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#2B4C7E]/50"
+          className="relative w-full h-full overflow-hidden rounded-xl border-[2px] border-gray-400 shadow-[0_6px_20px_rgba(250,0.25)] ring-2 ring-[#2B4C7E]/15 bg-slate-900 shadow-[0_8px_24px_rgba(43,76,126,0.18)] cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#2B4C7E]/50"
         >
           {HERO_VIDEO_URL && (
             <video
@@ -455,7 +455,7 @@ export default function HeroSectionMob({
               crossOrigin="anonymous"
               className="absolute inset-0 w-full h-full object-cover scale-[1.01]"
             >
-              <source src={HERO_VIDEO_URL} />
+              <source src={HERO_VIDEO_URL} />5,0,
               Your browser does not support the video tag.
             </video>
           )}
