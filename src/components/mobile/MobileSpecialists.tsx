@@ -654,7 +654,7 @@ const MobileSpecialists = () => {
                 aria-selected={isActive}
                 onClick={() => handleSpecialtyChange(spec.id)}
                 className={`flex items-center justify-between px-4 py-4 rounded-xl border-[2px] border-gray-400 shadow-[0_6px_20px_rgba(255,0,0,0.25)] text-left transition-all duration-200 active:scale-[0.98] ${isActive
-                  ? "bg-[#E31B23] border-[#16324F] text-white shadow-sm"
+                  ? "bg-[#128C7E] border-[#16324F] text-white shadow-sm"
                   : "bg-[#F8FAFC] border-slate-200/90 text-slate-700 hover:bg-slate-100/70"
                   }`}
               >
