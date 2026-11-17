@@ -86,7 +86,7 @@ const MobileHeader = () => {
                 className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#16324F] hover:bg-[#1E4369] text-white text-xs font-semibold tracking-wide shadow-xs active:scale-95 transition-all"
               >
                 <Stethoscope className="w-3.5 h-3.5 text-cyan-300" />
-                <span>Consult</span>
+                <span>Consult today</span>
               </button>
             </DialogTrigger>
 
