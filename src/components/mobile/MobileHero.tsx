@@ -427,7 +427,7 @@ export default function HeroSectionMob({
       aria-label="Mobile Hero Section"
       className="relative flex flex-col w-full bg-white px-2.5 pt-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] text-white font-sans overflow-hidden select-none"
     >
-      <div className="relative z-10 flex flex-col w-full h-[calc(90dvh-4.5rem-env(safe-area-inset-top))] min-h-[560px]">
+      <div className="relative z-10 flex flex-col w-full h-[calc(98dvh-4.5rem-env(safe-area-inset-top))] min-h-[560px]">
         <div
           ref={videoRef}
           role="region"
