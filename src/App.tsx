@@ -1,44 +1,45 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// --- Components ---
-import Header from "./components/Header";
-import MobileHeader from "./components/mobile/MobileHeader";
-import Services from "./components/Services";
-
-// --- Pages ---
-import Index from "./pages/Index";
-import MobileIndex from "./pages/MobileIndex";
 import { useIsMobile } from "./hooks/use-mobile";
-import NotFound from "./pages/NotFound";
-import BlogPage from "./pages/BlogPage";
-import ServiceDetail from "./pages/ServiceDetail";
-import StartYourJourney from "./pages/StartYourJourney";
-import Team from "./pages/TeamPage";
-import TermsAndConditionPage from "./pages/TermsAndConditionPage";
-import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
-import MedicalDisclaimerPage from "./pages/MedicalDisclaimer";
-import PatientGalleryPage from "./pages/PetientsGallery";
-import LeaveReviewPage from "./pages/LeaveReviewPage";
-import TreatmentAndPlaning from "./pages/TreatmentAndPlaning";
-import VisaAndTravel from "./pages/VisaAndTravel";
-import CultureAndLanguage from "./pages/CultureAndLanguage";
-import PostTreatment from "./pages/PostTreatment";
-
-// --- New Region Pages ---
-import CIS from "./pages/CIS";
-import EastAfrica from "./pages/EastAfrica";
-import NetherLand from "./pages/NetherLand";
-import ArabeGolf from "./pages/ArabeGolf";
+import ScrollToTop from "./components/ScrollToTop";
 
 // --- Styles ---
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ScrollToTop from "./components/ScrollToTop";
-import ContactPage from "./pages/ContactPage";
+
+// --- Lazy-Loaded Components ---
+const Header = lazy(() => import("./components/Header"));
+const MobileHeader = lazy(() => import("./components/mobile/MobileHeader"));
+const Services = lazy(() => import("./components/Services"));
+
+// --- Lazy-Loaded Pages ---
+const Index = lazy(() => import("./pages/Index"));
+const MobileIndex = lazy(() => import("./pages/MobileIndex"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const StartYourJourney = lazy(() => import("./pages/StartYourJourney"));
+const Team = lazy(() => import("./pages/TeamPage"));
+const TermsAndConditionPage = lazy(() => import("./pages/TermsAndConditionPage"));
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
+const MedicalDisclaimerPage = lazy(() => import("./pages/MedicalDisclaimer"));
+const PatientGalleryPage = lazy(() => import("./pages/PetientsGallery"));
+const LeaveReviewPage = lazy(() => import("./pages/LeaveReviewPage"));
+const TreatmentAndPlaning = lazy(() => import("./pages/TreatmentAndPlaning"));
+const VisaAndTravel = lazy(() => import("./pages/VisaAndTravel"));
+const CultureAndLanguage = lazy(() => import("./pages/CultureAndLanguage"));
+const PostTreatment = lazy(() => import("./pages/PostTreatment"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+
+// --- Lazy-Loaded Region Pages ---
+const CIS = lazy(() => import("./pages/CIS"));
+const EastAfrica = lazy(() => import("./pages/EastAfrica"));
+const NetherLand = lazy(() => import("./pages/NetherLand"));
+const ArabeGolf = lazy(() => import("./pages/ArabeGolf"));
 
 const queryClient = new QueryClient();
 
@@ -59,8 +60,17 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <HeaderSwitch />
-        <Routes>
+        <Suspense fallback={<div className="h-16 w-full bg-white border-b border-slate-200/80" />}>
+          <HeaderSwitch />
+        </Suspense>
+        <Suspense
+          fallback={
+            <div className="min-h-[60vh] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full border-2 border-[#16324F] border-t-transparent animate-spin" />
+            </div>
+          }
+        >
+          <Routes>
           {/* Main Pages */}
           <Route path="/" element={<HomeRoute />} />
           <Route path="/blog" element={<BlogPage />} />
@@ -96,7 +106,8 @@ const App = () => (
           {/* ⭐ 404 CATCH-ALL ROUTE (Must be last) */}
           <Route path="*" element={<NotFound />} />
 
-        </Routes>
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
