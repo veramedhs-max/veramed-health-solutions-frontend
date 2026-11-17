@@ -22,22 +22,11 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            if (id.includes("react-dom") || id.includes("react-router-dom") || id.includes("/react/")) {
-              return "react-vendor";
-            }
-            if (id.includes("@radix-ui") || id.includes("lucide-react")) {
-              return "ui-vendor";
-            }
-            if (id.includes("@tanstack/react-query") || id.includes("axios") || id.includes("zustand")) {
-              return "data-vendor";
-            }
-            if (id.includes("react-slick") || id.includes("slick-carousel") || id.includes("embla-carousel")) {
-              return "carousel-vendor";
-            }
-            return "vendor";
-          }
+        manualChunks: {
+          "react-vendor": ["react", "react-dom", "react-router-dom"],
+          "ui-vendor": ["lucide-react"],
+          "query-vendor": ["@tanstack/react-query"],
+          "carousel-vendor": ["react-slick", "slick-carousel"],
         },
       },
     },
