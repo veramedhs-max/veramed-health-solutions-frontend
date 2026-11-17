@@ -206,8 +206,8 @@ function useDelayedVideoPlayback(delayMs: number) {
 
 const TopStatusBadges = memo(function TopStatusBadges() {
   return (
-    <div className="flex items-center justify-between">
-      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10">
+    <div className="flex items-center justify-between mt-2">
+      <div className="inline-flex items-center gap-1.5 px-2.5 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/10">
         <span
           aria-hidden="true"
           className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"
@@ -217,9 +217,9 @@ const TopStatusBadges = memo(function TopStatusBadges() {
         </span>
       </div>
 
-      <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/[0.06] backdrop-blur-md border border-white/10">
+      <div className="inline-flex items-center gap-1 px-2.5 py-2 rounded-full bg-white/[0.06] backdrop-blur-md border border-white/10">
         <Sparkles aria-hidden="true" className="w-3 h-3 text-[#E62329]" />
-        <span className="text-[10px] font-medium text-white/80">24/7 Global Care Desk</span>
+        <span className="text-[11px] font-medium text-white/80">24/7 Global Care Desk</span>
       </div>
     </div>
   );
