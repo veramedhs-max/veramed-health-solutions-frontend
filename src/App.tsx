@@ -6,10 +6,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // --- Components ---
 import Header from "./components/Header";
+import MobileHeader from "./components/mobile/MobileHeader";
 import Services from "./components/Services";
 
 // --- Pages ---
 import Index from "./pages/Index";
+import MobileIndex from "./pages/MobileIndex";
+import { useIsMobile } from "./hooks/use-mobile";
 import NotFound from "./pages/NotFound";
 import BlogPage from "./pages/BlogPage";
 import ServiceDetail from "./pages/ServiceDetail";
@@ -39,6 +42,16 @@ import ContactPage from "./pages/ContactPage";
 
 const queryClient = new QueryClient();
 
+const HomeRoute = () => {
+  const isMobile = useIsMobile();
+  return isMobile ? <MobileIndex /> : <Index />;
+};
+
+const HeaderSwitch = () => {
+  const isMobile = useIsMobile();
+  return isMobile ? <MobileHeader /> : <Header />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -46,10 +59,10 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <Header />
+        <HeaderSwitch />
         <Routes>
           {/* Main Pages */}
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<HomeRoute />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/services" element={<Services />} />
           <Route path="/servicedetails/:serviceId" element={<ServiceDetail />} />
@@ -90,3 +103,15 @@ const App = () => (
 );
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
