@@ -57,8 +57,8 @@ const PORTRAITS = [
 const SPECIALTIES: SpecialtyCategory[] = [
   {
     id: "cardiology",
-    label: "Cardiologists",
-    shortLabel: "Cardiology",
+    label: "Cardiologist",
+    shortLabel: "Cardiologist",
     tagline: "Minimally invasive heart surgery, TAVR, bypass & pediatric cardiac care.",
     icon: HeartPulse,
     accentText: "text-rose-700",
@@ -189,7 +189,7 @@ const SPECIALTIES: SpecialtyCategory[] = [
   {
     id: "neurology",
     label: "Neurologists",
-    shortLabel: "Neurology",
+    shortLabel: "Neurologist",
     tagline: "Brain tumor microsurgery, deep brain stimulation, stroke & spine care.",
     icon: Brain,
     accentText: "text-indigo-700",
@@ -320,7 +320,7 @@ const SPECIALTIES: SpecialtyCategory[] = [
   {
     id: "oncology",
     label: "Oncologists",
-    shortLabel: "Oncology",
+    shortLabel: "Oncologist",
     tagline: "Robotic cancer surgery, CAR-T therapy, bone marrow transplant & proton therapy.",
     icon: Ribbon,
     accentText: "text-teal-700",
@@ -451,7 +451,7 @@ const SPECIALTIES: SpecialtyCategory[] = [
   {
     id: "urology",
     label: "Urologists",
-    shortLabel: "Urology",
+    shortLabel: "Urologist",
     tagline: "Da Vinci robotic prostatectomy, kidney transplant, laser stone & reconstructive urology.",
     icon: Stethoscope,
     accentText: "text-blue-700",
@@ -582,7 +582,7 @@ const SPECIALTIES: SpecialtyCategory[] = [
 ];
 
 const MobileSpecialists = () => {
-  const [activeTab, setActiveTab] = useState<SpecialtyId>("cardiology");
+  const [activeTab, setActiveTab] = useState("g")
   const [viewMode, setViewMode] = useState<"carousel" | "grid">("carousel");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
@@ -624,13 +624,13 @@ const MobileSpecialists = () => {
           <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 mb-2">
             <Award className="w-3.5 h-3.5 text-[#16324F]" />
             <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#16324F]">
-              India’s Premier Medical Faculty
+              Top Doctor's in India
             </span>
           </div>
 
           <h2 className="text-[22px] leading-[1.22] font-bold tracking-tight text-[#0F2942]">
-            Consult Senior Specialists &{" "}
-            <span className="text-blue-600">Department Heads</span>
+            Find the best Specialist &{" "}
+            <span className="text-blue-600">Doctors in India</span>
           </h2>
 
           <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
@@ -653,8 +653,8 @@ const MobileSpecialists = () => {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => handleSpecialtyChange(spec.id)}
-                className={`flex items-center justify-between px-3 py-2.5 rounded-xl border text-left transition-all duration-200 active:scale-[0.98] ${isActive
-                  ? "bg-[#16324F] border-[#16324F] text-white shadow-sm"
+                className={`flex items-center justify-between px-4 py-4 rounded-xl border-[2px] border-gray-400 shadow-[0_6px_20px_rgba(255,0,0,0.25)] text-left transition-all duration-200 active:scale-[0.98] ${isActive
+                  ? "bg-[#E31B23] border-[#16324F] text-white shadow-sm"
                   : "bg-[#F8FAFC] border-slate-200/90 text-slate-700 hover:bg-slate-100/70"
                   }`}
               >
@@ -663,14 +663,14 @@ const MobileSpecialists = () => {
                     className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${isActive ? "bg-white/15 text-white" : "bg-white border border-slate-200 text-[#16324F]"
                       }`}
                   >
-                    <IconComponent className="w-3.5 h-3.5" strokeWidth={2} />
+                    <IconComponent className="w-4 h-4" strokeWidth={2} />
                   </div>
                   <div className="truncate">
-                    <div className="text-xs font-bold leading-tight truncate">
+                    <div className="text-md font-bold leading-tight truncate">
                       {spec.shortLabel}
                     </div>
                     <div
-                      className={`text-[10px] font-medium leading-tight ${isActive ? "text-slate-300" : "text-slate-500"
+                      className={`text-[12px] font-medium leading-tight ${isActive ? "text-slate-300" : "text-slate-500"
                         }`}
                     >
                       {spec.doctors.length} Specialists
@@ -721,7 +721,7 @@ const MobileSpecialists = () => {
           {currentCategory.doctors.map((doc, index) => (
             <article
               key={doc.id}
-              className={`flex flex-col justify-between rounded-2xl bg-white border border-slate-200/95 shadow-[0_6px_20px_-6px_rgba(15,23,42,0.08)] overflow-hidden transition-all ${viewMode === "carousel" ? "min-w-[84vw] max-w-[84vw] snap-center shrink-0" : "w-full"
+              className={`flex flex-col justify-between rounded-2xl border-[2px] border-gray-300 shadow-[0_20px_50px_rgba(0,0,0,0.25)] bg-white overflow-hidden transition-all ${viewMode === "carousel" ? "min-w-[84vw] max-w-[84vw] snap-center shrink-0" : "w-full"
                 }`}
             >
               <div className="p-3.5">
